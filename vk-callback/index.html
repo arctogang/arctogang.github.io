@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VK ID — ArctoGang</title>
+</head>
+
+<body>
+  <h2>Авторизация VK ID</h2>
+  <p id="status">Получение данных авторизации…</p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const code = params.get("code");
+    const deviceId = params.get("device_id");
+    const state = params.get("state");
+    const error = params.get("error");
+
+    if (error) {
+      document.getElementById("status").textContent =
+        "Ошибка авторизации VK: " + error;
+    } else if (code) {
+      document.getElementById("status").textContent =
+        "Авторизация выполнена. Можно вернуться в приложение.";
+
+      console.log("code:", code);
+      console.log("device_id:", deviceId);
+      console.log("state:", state);
+    } else {
+      document.getElementById("status").textContent =
+        "Ожидание данных авторизации VK ID.";
+    }
+  </script>
+</body>
+</html>
